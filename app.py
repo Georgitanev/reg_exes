@@ -14,7 +14,7 @@ Please write a program on Perl/Python/JS or your favorite scripting language.
 """
 
 import re
-
+from typing import Any, List
 
 
 string = """Welcome to #EMIS. If you need any help from HR you can write to #Milo.Minderbinder. 
@@ -38,30 +38,26 @@ def dot(contact: str) -> str:
     return contact
 
 
-def count_dot(contact: str, delimeter) -> str:
-    if contact.count(f'{delimeter}') == None:
+def count_dot(contact: str, deli) -> Any:
+    if contact.count(f'{deli}') == None or contact.count(f'{deli}') == False:
         return False
-    if contact.count(f'{delimeter}') == False:
-        return False
-    if contact.count(f'{delimeter}') == 1:
+    if contact.count(f'{deli}') == 1:
         return contact
 
 
-def regex_parser(string: str, delimeter: str = '.'):
-    contacts = re.findall(f'#[A-Z\w{delimeter}w\t\n]+', string)
+def regex_parser(string: str, deli: str = '.') -> List:
+    contacts = re.findall(f'#[A-Z\w{deli}w\t\n]+', string)
     list1 = []
     for contact in contacts:
         contact = dot(contact)
-        if count_dot(contact, delimeter) == None:
-            pass
-        if count_dot(contact, delimeter) == False:
+        if count_dot(contact, deli) == None or count_dot(contact, deli) == False:
             pass
         else:
-            list1.append(count_dot(contact, delimeter))
+            list1.append(count_dot(contact, deli))
     return list1
 
 
-print(regex_parser(string=string, delimeter='.'))
-print(regex_parser(string=string_brasil, delimeter='_'))
+print(regex_parser(string=string, deli='.'))
+print(regex_parser(string=string_brasil, deli='_'))
 
 
