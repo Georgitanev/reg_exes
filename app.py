@@ -49,7 +49,6 @@ def count_dot(contact: str, delimeter) -> str:
 
 def regex_parser(string: str, delimeter: str = '.'):
     contacts = re.findall(f'#[A-Z\w{delimeter}w\t\n]+', string)
-#    contacts = re.findall(f'#[A-Z\w{delimeter}w\t\n]+', string_brasil)
     list1 = []
     for contact in contacts:
         contact = dot(contact)
